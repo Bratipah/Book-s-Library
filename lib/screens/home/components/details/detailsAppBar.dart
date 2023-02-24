@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_ui/models/Product.dart'
 
 class DetailsAppbar extends StatelessWidget {
   const DetailsAppbar({
@@ -6,14 +7,14 @@ class DetailsAppbar extends StatelessWidget {
     this.product,
   }) : super(key: key);
 
-  final Product product
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
         padding:
-            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+            EdgeInsets.symmetric(horizontal: 20),
         child: Row(
           children: [
             SizedBox(
@@ -31,7 +32,7 @@ class DetailsAppbar extends StatelessWidget {
                 onPressed: () => Navigator.pop(context),
                 child: Icon(
                   Icons.arrow_back_ios_sharp,
-                  height: 15,
+                  size: 15,
                 ),
               ),
             ),

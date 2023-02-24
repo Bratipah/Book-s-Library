@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_ui/screens/Navigation.dart';
 import 'package:test_ui/screens/home/category_sec.dart';
 import 'package:test_ui/screens/home/OfferTag.dart';
+import 'package:test_ui/screens/home/products_sec.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -71,6 +72,13 @@ class HomePage extends StatelessWidget {
                   height: 50,
                 ),
                 OfferTag(),
+                SizedBox(
+                  height: 20,
+                ),
+                ProductsSec(),
+                SizedBox(
+                  height: 20,
+                ),
               ],
             ),
           ),

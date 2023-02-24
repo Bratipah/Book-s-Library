@@ -7,7 +7,7 @@ class ProductDescr extends StatefulWidget {
     required this.product,
   }) : super(key: key);
 
-  final Product product
+  final Product product;
 
   @override
   State<ProductDescr> createState() => _ProductDescrState();
