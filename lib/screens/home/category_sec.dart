@@ -13,16 +13,19 @@ class CategorySec extends StatelessWidget {
           category: "Fiction",
           title: "The Gypsy and the ants",
         ),
+        SizedBox(width: 20),
         CategoryCard(
           image: 'assets/images/pexels-pixabay-256450.jpg',
-          category: "Fiction",
-          title: "The happy day of there",
+          category: "Fantasy",
+          title: "The Lion, the Witch and the Wardrobe",
         ),
+        SizedBox(width: 20),
         CategoryCard(
           image: 'assets/images/pexels-olga-10178659.jpg',
           category: "Fiction",
           title: "Grant the guarantor",
         ),
+        SizedBox(width: 20),
         CategoryCard(
           image: 'assets/images/pexels-thought-catalog-904620.jpg',
           category: "Fiction",
@@ -50,30 +53,60 @@ class CategoryCard extends StatelessWidget {
     return Column(
       children: [
         GestureDetector(
-          onTap: () {},
-          child: Card(
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SizedBox(
-                  width: 210,
-                  height: 110,
-                  child: Image.asset(
+          onTap: (){},
+          child: SizedBox(
+            width: 210,
+            height: 100,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Stack(
+                children: [
+                  Image.asset(
                     image,
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                   ),
-                ),
-                Column(children: [Text("$category\n"), Text("$title")])
-              ],
+                  Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Color(0xFF343434).withOpacity(0.4),
+                          Color(0xFF343434).withOpacity(0.15),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal:5.0,
+                      vertical: 10,
+                    ),
+                    child: Text.rich(
+                      TextSpan(
+                        style: TextStyle(color: Colors.white),
+                        children: [
+                          TextSpan(
+                            text: "$category\n",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          TextSpan(
+                              text:"$title"
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+                // Padding(
+                //   padding: EdgeInsets.symmetric( vertical:10.0),
+                // ),
+              ),
             ),
-            elevation: 5,
-            margin: EdgeInsets.only(right: 13.0, left: 15.0, top: 25.0),
           ),
-        ),
-        SizedBox(
-            height: 50
         ),
       ],
     );

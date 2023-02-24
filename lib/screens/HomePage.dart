@@ -60,9 +60,15 @@ class HomePage extends StatelessWidget {
                             color: Colors.black.withOpacity(0.6))),
                   ],
                 ),
+                SizedBox(
+                  height: 30,
+                ),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: CategorySec(),
+                ),
+                SizedBox(
+                  height: 50,
                 ),
                 OfferTag(),
               ],
