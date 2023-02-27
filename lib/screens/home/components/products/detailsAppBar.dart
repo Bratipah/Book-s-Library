@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:test_ui/models/Product.dart'
+//import 'package:test_ui/models/Product.dart';
 
 class DetailsAppbar extends StatelessWidget {
-  const DetailsAppbar({
-    Key? key,
-    this.product,
-  }) : super(key: key);
+  final double rating;
 
-  final Product product;
+  DetailsAppbar({required this.rating});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +43,7 @@ class DetailsAppbar extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    product.rating,
+                   "$rating",
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,

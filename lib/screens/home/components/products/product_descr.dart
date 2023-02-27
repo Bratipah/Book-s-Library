@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_ui/models/Product.dart';
 
-class ProductDescr extends StatefulWidget {
+class ProductDescr extends StatelessWidget {
   const ProductDescr({
     Key? key,
     required this.product,
@@ -9,15 +9,11 @@ class ProductDescr extends StatefulWidget {
 
   final Product product;
 
-  @override
-  State<ProductDescr> createState() => _ProductDescrState();
-}
 
-class _ProductDescrState extends State<ProductDescr> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: crossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(padding: EdgeInsets.symmetric(horizontal: 20),
         child: Text(
