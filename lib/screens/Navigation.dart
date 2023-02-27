@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:test_ui/screens/HomePage.dart';
+import 'package:test_ui/screens/home/HomePage.dart';
+import 'home/components/landing_Image.dart';
 
 class Navigation extends StatefulWidget {
-  Navigation({Key? key}) : super(key: key);
 
   @override
   State<Navigation> createState() => _NavigationState();
@@ -58,13 +58,7 @@ class _NavigationState extends State<Navigation> {
           ],
         ),
       ),
-      body: Container(
-        width: 800,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.fill,
-                image: AssetImage('assets/images/6920933.jpg'))),
-      ),
+      body: LandingPage(),
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisSize: MainAxisSize.max,

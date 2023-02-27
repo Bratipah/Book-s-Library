@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_ui/models/Product.dart';
-import 'package:test_ui/screens/home/components/details/product_images.dart';
-import 'package:test_ui/screens/home/components/details/product_descr.dart';
+import 'package:test_ui/screens/home/components/products/product_images.dart';
+import 'package:test_ui/screens/home/components/products/product_descr.dart';
 
 class DetailsBody extends StatelessWidget {
   final Product product;

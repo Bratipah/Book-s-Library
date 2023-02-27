@@ -24,8 +24,23 @@ class HomePage extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
-                        Text('Welcome,'),
-                        Text('Books Library'),
+                        Text(
+                            'Welcome,',
+                          style: TextStyle(
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black
+                          ),
+                        ),
+                        Text(
+                            'Books Library',
+                          style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blueAccent
+                          ),
+
+                        ),
                       ],
                     ),
                     Container(
@@ -73,7 +88,7 @@ class HomePage extends StatelessWidget {
                 ),
                 OfferTag(),
                 SizedBox(
-                  height: 20,
+                  height: 50,
                 ),
                 ProductsSec(),
                 SizedBox(

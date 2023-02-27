@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_ui/models/Product.dart';
-import 'package:test_ui/screens/home/components/details/product_card.dart';
+import 'package:test_ui/screens/home/components/products/product_screen.dart';
+import 'package:test_ui/screens/home/components/products/products_card.dart';
 
 class ProductsSec extends StatelessWidget {
   @override
@@ -9,22 +10,30 @@ class ProductsSec extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Text(
-              "Books Available",
+          child: Text("Books Available",
               style: TextStyle(
-                fontSize: 18,
-                color: Colors.black,
-              )
-          ),
+                fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueAccent)),
         ),
-        SizedBox(height: 20,),
+        SizedBox(
+          height: 20,
+        ),
         SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
           child: Row(
             children: [
               ...List.generate(
-                  booksProducts.length, (index)
+                booksProducts.length,
+                (index) {
+                  if (booksProducts[index].isPopular)
+                    return ProductsCard(product: booksProducts[index]);
+                  return SizedBox.shrink();
+                },
               ),
-              SizedBox(width: 20,)
+              SizedBox(
+                width: 20,
+              ),
             ],
           ),
         )
