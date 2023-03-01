@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:test_ui/models/Product.dart';
+import 'package:test_ui/screens/home/HomePage.dart';
 import 'package:test_ui/screens/home/components/products/detailsBody.dart';
 import 'package:test_ui/screens/home/components/products/detailsAppBar.dart';
 
 
 class ProductScreen extends StatelessWidget {
-  static String routeName = "/product";
+  const ProductScreen({super.key});
   @override
   Widget build(BuildContext context) {
     final ProductDetailsArguments agrs = ModalRoute.of(context)!.settings.arguments as ProductDetailsArguments;

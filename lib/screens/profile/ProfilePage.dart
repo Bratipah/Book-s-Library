@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:test_ui/screens/navigation/components/bottom_navigation.dart';
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
@@ -9,6 +11,13 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      backgroundColor: Colors.blue[50],
+      appBar: AppBar(
+        title: const Text('Profile Page'),
+      ),
+      body: Container(),
+      bottomNavigationBar: BottomNavigation(),
+    );
   }
 }

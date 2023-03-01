@@ -11,11 +11,12 @@ class DetailsAppbar extends StatelessWidget {
     return SafeArea(
       child: Padding(
         padding:
-            EdgeInsets.symmetric(horizontal: 20),
+            EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+
         child: Row(
           children: [
             SizedBox(
-              height: 40,
+              height: 50,
               width: 40,
               child: TextButton(
                 style: TextButton.styleFrom(
@@ -30,6 +31,7 @@ class DetailsAppbar extends StatelessWidget {
                 child: Icon(
                   Icons.arrow_back_ios_sharp,
                   size: 15,
+                  color: Colors.blue[50],
                 ),
               ),
             ),
@@ -50,7 +52,7 @@ class DetailsAppbar extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 5),
-                  Icon(Icons.star_half_sharp),
+                  Icon(Icons.star_half_sharp,)
                 ],
               ),
             )

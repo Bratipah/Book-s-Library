@@ -18,7 +18,7 @@ class ProductDescr extends StatelessWidget {
         Padding(padding: EdgeInsets.symmetric(horizontal: 20),
         child: Text(
           product.title,
-          style: TextStyle(fontSize: 15,fontWeight: FontWeight.w200,color: Colors.black12 ),
+          style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.red ),
         ),
         ),
         Align(
@@ -41,6 +41,7 @@ class ProductDescr extends StatelessWidget {
             ),
           ),
         ),
+        SizedBox(height: 20),
         Padding(
           padding: EdgeInsets.only(
             left: 20,
@@ -49,6 +50,7 @@ class ProductDescr extends StatelessWidget {
           child: Text(
             product.description,
             maxLines: 3,
+            style: TextStyle(color: Colors.black),
           ),
         ),
       ],

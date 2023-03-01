@@ -17,7 +17,7 @@ class ProductsSec extends StatelessWidget {
                   color: Colors.blueAccent)),
         ),
         SizedBox(
-          height: 20,
+          height: 10,
         ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_ui/screens/home/components/products/product_screen.dart';
 import 'package:test_ui/models/Product.dart';
+import 'package:test_ui/routes.dart';
 
 class ProductsCard extends StatelessWidget {
   const ProductsCard({
@@ -17,11 +18,19 @@ class ProductsCard extends StatelessWidget {
       child: SizedBox(
         width: 130,
         child: GestureDetector(
-          onTap: () => Navigator.pushNamed(
-            context,
-            ProductScreen.routeName,
-            arguments: ProductDetailsArguments(product: product),
-          ),
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                builder: (context) => const ProductScreen(),
+            // Pass the arguments as part of the RouteSettings. The
+            // productScreen reads the arguments from these settings.
+            settings: RouteSettings(
+            arguments:ProductDetailsArguments(product: product),
+            ),
+            ),
+            );
+          },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

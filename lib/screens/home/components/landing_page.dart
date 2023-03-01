@@ -9,7 +9,7 @@ class LandingPage extends StatelessWidget {
       width: 800,
       decoration: BoxDecoration(
           image: DecorationImage(
-              fit: BoxFit.fill,
+              fit: BoxFit.contain,
               image: AssetImage('assets/images/6920933.jpg'))),
     );
   }
