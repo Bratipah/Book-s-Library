@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_ui/models/Product.dart';
 import 'package:test_ui/screens/home/components/products/product_screen.dart';
 import 'package:test_ui/screens/home/components/products/products_card.dart';
+import 'package:test_ui/models/product_response.dart';
 
 class ProductsSec extends StatelessWidget {
   @override
@@ -23,14 +24,7 @@ class ProductsSec extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              ...List.generate(
-                booksProducts.length,
-                (index) {
-                  if (booksProducts[index].isPopular)
-                    return ProductsCard(product: booksProducts[index]);
-                  return SizedBox.shrink();
-                },
-              ),
+              ProductResponse(),
               SizedBox(
                 width: 20,
               ),

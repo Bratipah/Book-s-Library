@@ -19,7 +19,7 @@ class DetailsBody extends StatelessWidget {
         width: double.infinity,
         height: 500.0,
         decoration: BoxDecoration(
-          color: Colors.black12,
+          color: Colors.white,
           borderRadius: BorderRadius.only(
           topLeft: Radius.circular(40),
           topRight: Radius.circular(40),

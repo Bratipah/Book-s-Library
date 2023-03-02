@@ -18,7 +18,7 @@ class ProductDescr extends StatelessWidget {
         Padding(padding: EdgeInsets.symmetric(horizontal: 20),
         child: Text(
           product.title,
-          style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.red ),
+          style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.blueAccent[400] ),
         ),
         ),
         Align(
@@ -28,7 +28,7 @@ class ProductDescr extends StatelessWidget {
             width: 64,
             decoration: BoxDecoration(
               color:
-              product.isFinished ? Color(0xFFFFE6E6) : Color(0xFFF5F6F9),
+              product.isFinished ? Color(0xFFFFE6E6) : Colors.blueGrey,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20),
                 bottomLeft: Radius.circular(20),
@@ -36,8 +36,8 @@ class ProductDescr extends StatelessWidget {
             ),
             child: Icon(Icons.check_circle_sharp,
               color:
-              product.isFinished ? Color(0xFFFF4848) : Color(0xFFDBDEE4),
-              size: 16,
+              product.isFinished ? Color(0xFFFF4848) : Colors.white,
+              size: 20,
             ),
           ),
         ),

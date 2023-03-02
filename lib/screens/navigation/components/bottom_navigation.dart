@@ -29,7 +29,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     builder: (context) => IconButton(
     icon: Icon(Icons.library_books_sharp),
     onPressed: () {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => LibraryPage(booksProducts)));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => LibraryPage()));
     },
     )),
     IconButton(
