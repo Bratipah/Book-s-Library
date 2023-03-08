@@ -18,18 +18,22 @@ class ProfileDetails extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(
-            icon,
-            color: Colors.lightBlueAccent,
-            size: 20,
-          ),
-          SizedBox(width:0.5),
-          Text(
-            title,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-            ),
+          Row(
+            children: [
+              Icon(
+                icon,
+                color: Colors.lightBlueAccent,
+                size: 20,
+              ),
+              SizedBox(width:0.5),
+              Text(
+                title,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+            ],
           ),
           Icon(
             Icons.arrow_forward_ios_rounded,

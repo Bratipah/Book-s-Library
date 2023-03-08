@@ -19,7 +19,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.all(15),
+          padding: EdgeInsets.only(top: 20),
           // height: 600,
           child: Column(
            crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,7 +39,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               SizedBox(
-                height: 50.0,
+                height: 100.0,
                 child: Column(
                   children: [
                     Text(
@@ -67,7 +67,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 padding: EdgeInsets.all(20),
                 height: 500,
                 child:Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     ProfileDetails(
                       icon: Icons.person_sharp,
@@ -86,16 +86,18 @@ class _ProfilePageState extends State<ProfilePage> {
                       title: "Faqs",
                     ),
                     ProfileDetails(
+                      icon: Icons.share_sharp,
+                      title: "Share",
+                    ),
+                    ProfileDetails(
                       icon: Icons.logout,
                       title: "Logout",
                     ),
                   ],
-                )
-
+                ),
               ),
             ],
           ),
-
         ),
       ),
       bottomNavigationBar: BottomNavigation(),

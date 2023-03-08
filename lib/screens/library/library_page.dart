@@ -19,7 +19,7 @@ class LibraryPage extends StatelessWidget {
         title: const Text('Library Page'),
       ),
       body: Container(
-        margin: EdgeInsets.only(top: 15),
+        margin: EdgeInsets.only(top: 10),
        padding: EdgeInsets.all(10),
         child: ListView.builder(
           itemCount: booksProducts.length,

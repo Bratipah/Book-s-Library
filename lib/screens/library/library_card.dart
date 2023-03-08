@@ -37,7 +37,7 @@ class LibraryCard extends StatelessWidget {
                 );
               },
               leading: CircleAvatar(
-                radius: 30,
+                // radius: 40,
                 child: Image.asset(product.image),
               ),
               title: Text(product.title),

@@ -11,7 +11,7 @@ class OfferTag extends StatelessWidget {
           height: 80,
           decoration: BoxDecoration(
             color: Colors.blue[300],
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(10),
           ),
           ),
         Positioned(
@@ -33,11 +33,11 @@ class OfferTag extends StatelessWidget {
               decoration: BoxDecoration(
                   color: Colors.transparent,
                   shape: BoxShape.circle,
-                  border: Border.all(width: 15,color: Colors.white)
+                  border: Border.all(width: 10,color: Colors.white)
               ),
             )),
         Container(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 10),
             margin: EdgeInsets.only(top: 17),
             child:Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -46,11 +46,11 @@ class OfferTag extends StatelessWidget {
                 CircleAvatar(
                     backgroundColor: Colors.white,
                     maxRadius: 20,
-                    child: Icon(Icons.currency_exchange_sharp,size: 35,color: Colors.orangeAccent,)
+                    child: Icon(Icons.currency_exchange_sharp,size: 30,color: Colors.orangeAccent,)
                 ),
                 SizedBox(
                   height: 15,
-                  width: 10,
+                  width: 3,
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -58,7 +58,7 @@ class OfferTag extends StatelessWidget {
                   children: [
                     Text(
                       '10% Discount!! Selected',// the Text
-                      style: TextStyle(fontSize: 22.0,fontWeight: FontWeight.bold,color:Colors.white),  //text color
+                      style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold,color:Colors.white),  //text color
                     ),
                     Text(
                       'While Offer Lasts.....',// the Text
