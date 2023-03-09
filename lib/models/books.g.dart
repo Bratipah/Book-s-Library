@@ -7,6 +7,8 @@ part of 'books.dart';
 // **************************************************************************
 
 Serializer<Books> _$booksSerializer = new _$BooksSerializer();
+Serializer<Volume> _$volumeSerializer = new _$VolumeSerializer();
+Serializer<VolumeInfo> _$volumeInfoSerializer = new _$VolumeInfoSerializer();
 
 class _$BooksSerializer implements StructuredSerializer<Books> {
   @override
@@ -18,30 +20,15 @@ class _$BooksSerializer implements StructuredSerializer<Books> {
   Iterable<Object?> serialize(Serializers serializers, Books object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'id',
-      serializers.serialize(object.id, specifiedType: const FullType(int)),
-      'title',
-      serializers.serialize(object.title,
-          specifiedType: const FullType(String)),
-      'image',
-      serializers.serialize(object.image,
-          specifiedType: const FullType(String)),
-      'author',
-      serializers.serialize(object.author,
-          specifiedType: const FullType(String)),
-      'description',
-      serializers.serialize(object.description,
-          specifiedType: const FullType(String)),
-      'price',
-      serializers.serialize(object.price, specifiedType: const FullType(int)),
-      'rating',
-      serializers.serialize(object.rating, specifiedType: const FullType(int)),
-      'isFinished',
-      serializers.serialize(object.isFinished,
-          specifiedType: const FullType(bool)),
-      'isPopular',
-      serializers.serialize(object.isPopular,
-          specifiedType: const FullType(bool)),
+      'kind',
+      serializers.serialize(object.kind, specifiedType: const FullType(String)),
+      'items',
+      serializers.serialize(object.items,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(Volume)])),
+      'total_items',
+      serializers.serialize(object.totalItems,
+          specifiedType: const FullType(int)),
     ];
 
     return result;
@@ -58,41 +45,134 @@ class _$BooksSerializer implements StructuredSerializer<Books> {
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'id':
-          result.id = serializers.deserialize(value,
+        case 'kind':
+          result.kind = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'items':
+          result.items.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(Volume)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'total_items':
+          result.totalItems = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
           break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$VolumeSerializer implements StructuredSerializer<Volume> {
+  @override
+  final Iterable<Type> types = const [Volume, _$Volume];
+  @override
+  final String wireName = 'Volume';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, Volume object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'kind',
+      serializers.serialize(object.kind, specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'etag',
+      serializers.serialize(object.etag, specifiedType: const FullType(String)),
+      'self_link',
+      serializers.serialize(object.selfLink,
+          specifiedType: const FullType(String)),
+      'volume_info',
+      serializers.serialize(object.volumeInfo,
+          specifiedType: const FullType(VolumeInfo)),
+    ];
+
+    return result;
+  }
+
+  @override
+  Volume deserialize(Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new VolumeBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'kind':
+          result.kind = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'etag':
+          result.etag = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'self_link':
+          result.selfLink = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'volume_info':
+          result.volumeInfo.replace(serializers.deserialize(value,
+              specifiedType: const FullType(VolumeInfo))! as VolumeInfo);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$VolumeInfoSerializer implements StructuredSerializer<VolumeInfo> {
+  @override
+  final Iterable<Type> types = const [VolumeInfo, _$VolumeInfo];
+  @override
+  final String wireName = 'VolumeInfo';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, VolumeInfo object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'title',
+      serializers.serialize(object.title,
+          specifiedType: const FullType(String)),
+      'authors',
+      serializers.serialize(object.authors,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(String)])),
+    ];
+
+    return result;
+  }
+
+  @override
+  VolumeInfo deserialize(Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new VolumeInfoBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
         case 'title':
           result.title = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
-        case 'image':
-          result.image = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
-          break;
-        case 'author':
-          result.author = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
-          break;
-        case 'description':
-          result.description = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
-          break;
-        case 'price':
-          result.price = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
-          break;
-        case 'rating':
-          result.rating = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
-          break;
-        case 'isFinished':
-          result.isFinished = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
-          break;
-        case 'isPopular':
-          result.isPopular = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+        case 'authors':
+          result.authors.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
           break;
       }
     }
@@ -103,47 +183,20 @@ class _$BooksSerializer implements StructuredSerializer<Books> {
 
 class _$Books extends Books {
   @override
-  final int id;
+  final String kind;
   @override
-  final String title;
+  final BuiltList<Volume> items;
   @override
-  final String image;
-  @override
-  final String author;
-  @override
-  final String description;
-  @override
-  final int price;
-  @override
-  final int rating;
-  @override
-  final bool isFinished;
-  @override
-  final bool isPopular;
+  final int totalItems;
 
   factory _$Books([void Function(BooksBuilder)? updates]) =>
       (new BooksBuilder()..update(updates))._build();
 
-  _$Books._(
-      {required this.id,
-      required this.title,
-      required this.image,
-      required this.author,
-      required this.description,
-      required this.price,
-      required this.rating,
-      required this.isFinished,
-      required this.isPopular})
+  _$Books._({required this.kind, required this.items, required this.totalItems})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(id, r'Books', 'id');
-    BuiltValueNullFieldError.checkNotNull(title, r'Books', 'title');
-    BuiltValueNullFieldError.checkNotNull(image, r'Books', 'image');
-    BuiltValueNullFieldError.checkNotNull(author, r'Books', 'author');
-    BuiltValueNullFieldError.checkNotNull(description, r'Books', 'description');
-    BuiltValueNullFieldError.checkNotNull(price, r'Books', 'price');
-    BuiltValueNullFieldError.checkNotNull(rating, r'Books', 'rating');
-    BuiltValueNullFieldError.checkNotNull(isFinished, r'Books', 'isFinished');
-    BuiltValueNullFieldError.checkNotNull(isPopular, r'Books', 'isPopular');
+    BuiltValueNullFieldError.checkNotNull(kind, r'Books', 'kind');
+    BuiltValueNullFieldError.checkNotNull(items, r'Books', 'items');
+    BuiltValueNullFieldError.checkNotNull(totalItems, r'Books', 'totalItems');
   }
 
   @override
@@ -157,29 +210,17 @@ class _$Books extends Books {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is Books &&
-        id == other.id &&
-        title == other.title &&
-        image == other.image &&
-        author == other.author &&
-        description == other.description &&
-        price == other.price &&
-        rating == other.rating &&
-        isFinished == other.isFinished &&
-        isPopular == other.isPopular;
+        kind == other.kind &&
+        items == other.items &&
+        totalItems == other.totalItems;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, title.hashCode);
-    _$hash = $jc(_$hash, image.hashCode);
-    _$hash = $jc(_$hash, author.hashCode);
-    _$hash = $jc(_$hash, description.hashCode);
-    _$hash = $jc(_$hash, price.hashCode);
-    _$hash = $jc(_$hash, rating.hashCode);
-    _$hash = $jc(_$hash, isFinished.hashCode);
-    _$hash = $jc(_$hash, isPopular.hashCode);
+    _$hash = $jc(_$hash, kind.hashCode);
+    _$hash = $jc(_$hash, items.hashCode);
+    _$hash = $jc(_$hash, totalItems.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -187,15 +228,9 @@ class _$Books extends Books {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'Books')
-          ..add('id', id)
-          ..add('title', title)
-          ..add('image', image)
-          ..add('author', author)
-          ..add('description', description)
-          ..add('price', price)
-          ..add('rating', rating)
-          ..add('isFinished', isFinished)
-          ..add('isPopular', isPopular))
+          ..add('kind', kind)
+          ..add('items', items)
+          ..add('totalItems', totalItems))
         .toString();
   }
 }
@@ -203,56 +238,26 @@ class _$Books extends Books {
 class BooksBuilder implements Builder<Books, BooksBuilder> {
   _$Books? _$v;
 
-  int? _id;
-  int? get id => _$this._id;
-  set id(int? id) => _$this._id = id;
+  String? _kind;
+  String? get kind => _$this._kind;
+  set kind(String? kind) => _$this._kind = kind;
 
-  String? _title;
-  String? get title => _$this._title;
-  set title(String? title) => _$this._title = title;
+  ListBuilder<Volume>? _items;
+  ListBuilder<Volume> get items => _$this._items ??= new ListBuilder<Volume>();
+  set items(ListBuilder<Volume>? items) => _$this._items = items;
 
-  String? _image;
-  String? get image => _$this._image;
-  set image(String? image) => _$this._image = image;
-
-  String? _author;
-  String? get author => _$this._author;
-  set author(String? author) => _$this._author = author;
-
-  String? _description;
-  String? get description => _$this._description;
-  set description(String? description) => _$this._description = description;
-
-  int? _price;
-  int? get price => _$this._price;
-  set price(int? price) => _$this._price = price;
-
-  int? _rating;
-  int? get rating => _$this._rating;
-  set rating(int? rating) => _$this._rating = rating;
-
-  bool? _isFinished;
-  bool? get isFinished => _$this._isFinished;
-  set isFinished(bool? isFinished) => _$this._isFinished = isFinished;
-
-  bool? _isPopular;
-  bool? get isPopular => _$this._isPopular;
-  set isPopular(bool? isPopular) => _$this._isPopular = isPopular;
+  int? _totalItems;
+  int? get totalItems => _$this._totalItems;
+  set totalItems(int? totalItems) => _$this._totalItems = totalItems;
 
   BooksBuilder();
 
   BooksBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _id = $v.id;
-      _title = $v.title;
-      _image = $v.image;
-      _author = $v.author;
-      _description = $v.description;
-      _price = $v.price;
-      _rating = $v.rating;
-      _isFinished = $v.isFinished;
-      _isPopular = $v.isPopular;
+      _kind = $v.kind;
+      _items = $v.items.toBuilder();
+      _totalItems = $v.totalItems;
       _$v = null;
     }
     return this;
@@ -273,25 +278,289 @@ class BooksBuilder implements Builder<Books, BooksBuilder> {
   Books build() => _build();
 
   _$Books _build() {
-    final _$result = _$v ??
-        new _$Books._(
-            id: BuiltValueNullFieldError.checkNotNull(id, r'Books', 'id'),
-            title:
-                BuiltValueNullFieldError.checkNotNull(title, r'Books', 'title'),
-            image:
-                BuiltValueNullFieldError.checkNotNull(image, r'Books', 'image'),
-            author: BuiltValueNullFieldError.checkNotNull(
-                author, r'Books', 'author'),
-            description: BuiltValueNullFieldError.checkNotNull(
-                description, r'Books', 'description'),
-            price:
-                BuiltValueNullFieldError.checkNotNull(price, r'Books', 'price'),
-            rating: BuiltValueNullFieldError.checkNotNull(
-                rating, r'Books', 'rating'),
-            isFinished: BuiltValueNullFieldError.checkNotNull(
-                isFinished, r'Books', 'isFinished'),
-            isPopular: BuiltValueNullFieldError.checkNotNull(
-                isPopular, r'Books', 'isPopular'));
+    _$Books _$result;
+    try {
+      _$result = _$v ??
+          new _$Books._(
+              kind:
+                  BuiltValueNullFieldError.checkNotNull(kind, r'Books', 'kind'),
+              items: items.build(),
+              totalItems: BuiltValueNullFieldError.checkNotNull(
+                  totalItems, r'Books', 'totalItems'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'items';
+        items.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Books', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$Volume extends Volume {
+  @override
+  final String kind;
+  @override
+  final String id;
+  @override
+  final String etag;
+  @override
+  final String selfLink;
+  @override
+  final VolumeInfo volumeInfo;
+
+  factory _$Volume([void Function(VolumeBuilder)? updates]) =>
+      (new VolumeBuilder()..update(updates))._build();
+
+  _$Volume._(
+      {required this.kind,
+      required this.id,
+      required this.etag,
+      required this.selfLink,
+      required this.volumeInfo})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(kind, r'Volume', 'kind');
+    BuiltValueNullFieldError.checkNotNull(id, r'Volume', 'id');
+    BuiltValueNullFieldError.checkNotNull(etag, r'Volume', 'etag');
+    BuiltValueNullFieldError.checkNotNull(selfLink, r'Volume', 'selfLink');
+    BuiltValueNullFieldError.checkNotNull(volumeInfo, r'Volume', 'volumeInfo');
+  }
+
+  @override
+  Volume rebuild(void Function(VolumeBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  VolumeBuilder toBuilder() => new VolumeBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is Volume &&
+        kind == other.kind &&
+        id == other.id &&
+        etag == other.etag &&
+        selfLink == other.selfLink &&
+        volumeInfo == other.volumeInfo;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, kind.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, etag.hashCode);
+    _$hash = $jc(_$hash, selfLink.hashCode);
+    _$hash = $jc(_$hash, volumeInfo.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'Volume')
+          ..add('kind', kind)
+          ..add('id', id)
+          ..add('etag', etag)
+          ..add('selfLink', selfLink)
+          ..add('volumeInfo', volumeInfo))
+        .toString();
+  }
+}
+
+class VolumeBuilder implements Builder<Volume, VolumeBuilder> {
+  _$Volume? _$v;
+
+  String? _kind;
+  String? get kind => _$this._kind;
+  set kind(String? kind) => _$this._kind = kind;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _etag;
+  String? get etag => _$this._etag;
+  set etag(String? etag) => _$this._etag = etag;
+
+  String? _selfLink;
+  String? get selfLink => _$this._selfLink;
+  set selfLink(String? selfLink) => _$this._selfLink = selfLink;
+
+  VolumeInfoBuilder? _volumeInfo;
+  VolumeInfoBuilder get volumeInfo =>
+      _$this._volumeInfo ??= new VolumeInfoBuilder();
+  set volumeInfo(VolumeInfoBuilder? volumeInfo) =>
+      _$this._volumeInfo = volumeInfo;
+
+  VolumeBuilder();
+
+  VolumeBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _kind = $v.kind;
+      _id = $v.id;
+      _etag = $v.etag;
+      _selfLink = $v.selfLink;
+      _volumeInfo = $v.volumeInfo.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(Volume other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$Volume;
+  }
+
+  @override
+  void update(void Function(VolumeBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  Volume build() => _build();
+
+  _$Volume _build() {
+    _$Volume _$result;
+    try {
+      _$result = _$v ??
+          new _$Volume._(
+              kind: BuiltValueNullFieldError.checkNotNull(
+                  kind, r'Volume', 'kind'),
+              id: BuiltValueNullFieldError.checkNotNull(id, r'Volume', 'id'),
+              etag: BuiltValueNullFieldError.checkNotNull(
+                  etag, r'Volume', 'etag'),
+              selfLink: BuiltValueNullFieldError.checkNotNull(
+                  selfLink, r'Volume', 'selfLink'),
+              volumeInfo: volumeInfo.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'volumeInfo';
+        volumeInfo.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Volume', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$VolumeInfo extends VolumeInfo {
+  @override
+  final String title;
+  @override
+  final BuiltList<String> authors;
+
+  factory _$VolumeInfo([void Function(VolumeInfoBuilder)? updates]) =>
+      (new VolumeInfoBuilder()..update(updates))._build();
+
+  _$VolumeInfo._({required this.title, required this.authors}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(title, r'VolumeInfo', 'title');
+    BuiltValueNullFieldError.checkNotNull(authors, r'VolumeInfo', 'authors');
+  }
+
+  @override
+  VolumeInfo rebuild(void Function(VolumeInfoBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  VolumeInfoBuilder toBuilder() => new VolumeInfoBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is VolumeInfo &&
+        title == other.title &&
+        authors == other.authors;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, title.hashCode);
+    _$hash = $jc(_$hash, authors.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'VolumeInfo')
+          ..add('title', title)
+          ..add('authors', authors))
+        .toString();
+  }
+}
+
+class VolumeInfoBuilder implements Builder<VolumeInfo, VolumeInfoBuilder> {
+  _$VolumeInfo? _$v;
+
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
+
+  ListBuilder<String>? _authors;
+  ListBuilder<String> get authors =>
+      _$this._authors ??= new ListBuilder<String>();
+  set authors(ListBuilder<String>? authors) => _$this._authors = authors;
+
+  VolumeInfoBuilder();
+
+  VolumeInfoBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _title = $v.title;
+      _authors = $v.authors.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(VolumeInfo other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$VolumeInfo;
+  }
+
+  @override
+  void update(void Function(VolumeInfoBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  VolumeInfo build() => _build();
+
+  _$VolumeInfo _build() {
+    _$VolumeInfo _$result;
+    try {
+      _$result = _$v ??
+          new _$VolumeInfo._(
+              title: BuiltValueNullFieldError.checkNotNull(
+                  title, r'VolumeInfo', 'title'),
+              authors: authors.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'authors';
+        authors.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'VolumeInfo', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

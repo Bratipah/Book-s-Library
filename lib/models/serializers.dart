@@ -6,7 +6,7 @@ import 'package:test_ui/models/books.dart';
 part 'serializers.g.dart';
 
 @SerializersFor(const [
-  Books,  //add your different model classes
+  Books,  //model class
 ])
 final Serializers serializers =
 (_$serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();

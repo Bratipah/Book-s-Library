@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:test_ui/screens/home/HomePage.dart';
+// import 'package:test_ui/screens/home/HomePage.dart';
 import 'package:test_ui/screens/library/library_page.dart';
-import 'package:test_ui/screens/searches/SearchPage.dart';
-import 'package:test_ui/screens/profile/ProfilePage.dart';
+// import 'package:test_ui/screens/searches/SearchPage.dart';
+// import 'package:test_ui/screens/profile/ProfilePage.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({Key? key}) : super(key: key);

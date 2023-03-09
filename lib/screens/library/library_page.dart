@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:test_ui/screens/navigation/components/bottom_navigation.dart';
-import 'package:test_ui/screens/library/library_card.dart';
-import 'package:test_ui/models/Product.dart';
+//import 'package:test_ui/screens/navigation/components/bottom_navigation.dart';
+// import 'package:test_ui/screens/library/library_card.dart';
+import 'package:test_ui/models/books.dart';
+import 'package:test_ui/screens/booksList.dart';
 
 class LibraryPage extends StatelessWidget {
-  LibraryPage({
-    Key? key,
-    this.product,
-  }) : super(key: key);
-
-  Product? product;
+  // LibraryPage({
+  //   Key? key,
+  //   this.product,
+  // }) : super(key: key);
+  //
+  // Product? product;
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +22,14 @@ class LibraryPage extends StatelessWidget {
       body: Container(
         margin: EdgeInsets.only(top: 10),
        padding: EdgeInsets.all(10),
-        child: ListView.builder(
-          itemCount: booksProducts.length,
-          itemBuilder: (context, index) {
-            return LibraryCard(product: booksProducts[index]);
-          },
+        child: BooksList(),
+        // ListView.builder(
+        //   itemCount: booksProducts.length,
+        //   itemBuilder: (context, index) {
+        //     return LibraryCard(product: booksProducts[index]);
+        //   },
         ),
-      ),
-      bottomNavigationBar: BottomNavigation(),
+      // bottomNavigationBar: BottomNavigation(),
     );
   }
 }
