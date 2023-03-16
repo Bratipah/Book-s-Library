@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:test_ui/models/Product.dart';
+import 'package:test_ui/models/books.dart';
+import 'package:test_ui/models/product_response.dart';
 
-class ProductImages extends StatefulWidget {
+class ProductImages extends StatelessWidget {
   const ProductImages({
     Key? key,
-    required this.product,
+    required this.books,
   }) : super(key: key);
 
-  final Product product;
-  @override
-  State<ProductImages> createState() => _ProductImagesState();
-}
+  final Books books;
 
-class _ProductImagesState extends State<ProductImages> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,14 +18,18 @@ class _ProductImagesState extends State<ProductImages> {
           width: 280,
           child: AspectRatio(
             aspectRatio: 1.02,
-            child: Hero(
-              tag: widget.product.id.toString(),
-              child: Image.asset(widget.product.image),
-            ),
+              child: ListView.builder(
+                itemCount: books.items.length,
+                itemBuilder: (context, index) {
+                  final volume = books.items[index];
+                  return Hero(
+                      tag: volume.kind,
+                      child:Image.network(volume.volumeInfo.imageLinks.thumbnail),
+                  );
+                },
+              ),
           ),
         ),
-
-
       ],
     );
   }

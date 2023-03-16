@@ -29,21 +29,18 @@ class HomePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
                         Text(
-                            'Welcome,',
+                          'Welcome,',
                           style: TextStyle(
                               fontSize: 23.0,
                               fontWeight: FontWeight.w500,
-                              color: Colors.black
-                          ),
+                              color: Colors.black),
                         ),
                         Text(
-                            'Books Library',
+                          'Books Library',
                           style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
-                              color: Colors.blueAccent
-                          ),
-
+                              color: Colors.blueAccent),
                         ),
                       ],
                     ),
@@ -69,15 +66,6 @@ class HomePage extends StatelessWidget {
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
                             color: Colors.blueAccent)),
-                    Text("view all",
-                        style: TextStyle(
-                            fontSize: 15.0,
-                            fontStyle: FontStyle.italic,
-                            decoration: TextDecoration.underline,
-                            decorationColor: Colors.blueAccent,
-                            decorationStyle: TextDecorationStyle.double,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black.withOpacity(0.6))),
                   ],
                 ),
                 SizedBox(

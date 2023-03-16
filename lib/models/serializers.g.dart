@@ -8,6 +8,9 @@ part of 'serializers.dart';
 
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Books.serializer)
+      ..add(ImageLinks.serializer)
+      ..add(Pdf.serializer)
+      ..add(ReadingModes.serializer)
       ..add(Volume.serializer)
       ..add(VolumeInfo.serializer)
       ..addBuilderFactory(

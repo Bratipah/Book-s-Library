@@ -12,7 +12,11 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: Scaffold(
       backgroundColor: Colors.blue[50],
       appBar: AppBar(
         title: const Text('Profile Page'),
@@ -22,7 +26,7 @@ class _ProfilePageState extends State<ProfilePage> {
           padding: EdgeInsets.only(top: 20),
           // height: 600,
           child: Column(
-           crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
                 alignment: Alignment.center,
@@ -33,8 +37,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: Colors.blue,
-                    width: 5
+                      color: Colors.blue,
+                      width: 5
                   ),
                 ),
               ),
@@ -44,29 +48,29 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: [
                     Text(
                       "John Doe",
-                      style: TextStyle(fontSize:18),
+                      style: TextStyle(fontSize: 18),
                     ),
                     Text(
-                        "johndoe@gmail.com",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w300,
-                          fontSize: 13,
-                        ),
+                      "johndoe@gmail.com",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w300,
+                        fontSize: 13,
+                      ),
                     ),
                   ],
                 ),
               ),
               Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(40),
-                        topRight: Radius.circular(40),
-                      )
-                  ),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40),
+                      topRight: Radius.circular(40),
+                    )
+                ),
                 padding: EdgeInsets.all(20),
                 height: 500,
-                child:Column(
+                child: Column(
                   // crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     ProfileDetails(
@@ -101,6 +105,12 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
       bottomNavigationBar: BottomNavigation(),
+    ),
     );
   }
 }
+
+// moveToLastScreen() {
+//   Navigator.of(context).pop();
+// }
+

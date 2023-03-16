@@ -7,6 +7,7 @@ import 'package:test_ui/models/product_response.dart';
 class ProductsSec extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _mediaQuery = MediaQuery.of(context).size;
     return Column(
       children: [
         Padding(
@@ -22,14 +23,18 @@ class ProductsSec extends StatelessWidget {
         ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               ProductResponse(),
               SizedBox(
-                width: 20,
+                width: 80,
               ),
             ],
           ),
+        )
         )
       ],
     );

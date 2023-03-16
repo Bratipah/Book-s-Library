@@ -1,56 +1,56 @@
 import 'package:flutter/material.dart';
-import 'package:test_ui/models/Product.dart';
+import 'package:test_ui/models/books.dart';
+import 'package:test_ui/models/product_response.dart';
 
 class ProductDescr extends StatelessWidget {
-  const ProductDescr({
+  ProductDescr({
     Key? key,
-    required this.product,
+    required this.books,
   }) : super(key: key);
 
-  final Product product;
-
+  final Books books;
 
   @override
   Widget build(BuildContext context) {
+    final _mediaQuery = MediaQuery.of(context).size;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(padding: EdgeInsets.symmetric(horizontal: 20),
-        child: Text(
-          product.title,
-          style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.blueAccent[400] ),
-        ),
-        ),
-        Align(
-          alignment: Alignment.centerRight,
-          child: Container(
-            padding: EdgeInsets.all(15),
-            width: 64,
-            decoration: BoxDecoration(
+          child: ListView.builder(
+            itemCount: books.items.length,
+            itemBuilder: (context, index) {
+              final volume = books.items[index];
+              return Text(
+              volume.volumeInfo.title,
+              style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.blueAccent[400] ),
+              );
+              Align(
+              alignment: Alignment.centerRight,
+              child: Container(
+              padding: EdgeInsets.all(15),
+              width: 64,
+              child: Icon(Icons.check_circle_sharp,
               color:
-              product.isFinished ? Color(0xFFFFE6E6) : Colors.blueGrey,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                bottomLeft: Radius.circular(20),
-              ),
-            ),
-            child: Icon(Icons.check_circle_sharp,
-              color:
-              product.isFinished ? Color(0xFFFF4848) : Colors.white,
+              volume.volumeInfo.readingModes.text ? Color(0xFFFF4848) : Colors.white,
               size: 20,
-            ),
-          ),
-        ),
-        SizedBox(height: 20),
-        Padding(
-          padding: EdgeInsets.only(
-            left: 20,
-            right: 64,
-          ),
-          child: Text(
-            product.description,
-            maxLines: 3,
-            style: TextStyle(color: Colors.black),
+              ),
+              ),
+              );
+              SizedBox(height: 20);
+              Padding(
+              padding: EdgeInsets.only(
+              left: 20,
+              right: 64,
+              ),
+              child: Text(
+              volume.volumeInfo.subtitle?? '',
+              maxLines: 3,
+              style: TextStyle(color: Colors.black
+              ),
+              ),
+              );
+            }
           ),
         ),
       ],

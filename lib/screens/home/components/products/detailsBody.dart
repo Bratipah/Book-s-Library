@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:test_ui/models/Product.dart';
+import 'package:test_ui/models/books.dart';
 import 'package:test_ui/screens/home/components/products/product_images.dart';
 import 'package:test_ui/screens/home/components/products/product_descr.dart';
 
 class DetailsBody extends StatelessWidget {
-  final Product product;
+  final Books books;
   double _currentSliderValue = 0.0;
   String? _sliderStatus;
 
-  DetailsBody({Key? key, required this.product}) : super(key: key);
+  DetailsBody({Key? key, required this.books}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListView(
         children: [
-        ProductImages(product: product),
+        ProductImages(books: books),
         Container(
         padding: EdgeInsets.only(top: 20.0),
         margin: EdgeInsets.only(top: 20.0),
@@ -31,7 +31,7 @@ class DetailsBody extends StatelessWidget {
         child: Column(
             children: [
               ProductDescr(
-              product: product,
+              books: books,
             ),
               Text('$_currentSliderValue'),
               CupertinoSlider(

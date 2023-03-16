@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
-//import 'package:test_ui/models/Product.dart';
+import 'package:test_ui/models/books.dart';
+import 'package:test_ui/models/product_response.dart';
 
 class DetailsAppbar extends StatelessWidget {
-  final double rating;
 
-  DetailsAppbar({required this.rating});
+  const DetailsAppbar({
+    Key? key,
+    required this.books,
+  }) : super(key: key);
+  final Books books;
 
   @override
   Widget build(BuildContext context) {
+    final _mediaQuery = MediaQuery.of(context).size;
     return SafeArea(
       child: Padding(
         padding:
@@ -44,13 +49,19 @@ class DetailsAppbar extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Text(
-                   "$rating",
+              ListView.builder(
+              itemCount: books.items.length,
+                itemBuilder: (context, index) {
+                  final volume = books.items[index];
+                  return Text(
+                    volume.volumeInfo.averageRating.toString(),
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                     ),
-                  ),
+                  );
+                },
+              ),
                   const SizedBox(width: 5),
                   Icon(Icons.star_half_sharp,)
                 ],
