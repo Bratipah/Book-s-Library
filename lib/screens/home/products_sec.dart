@@ -9,6 +9,7 @@ class ProductsSec extends StatelessWidget {
   Widget build(BuildContext context) {
     final _mediaQuery = MediaQuery.of(context).size;
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
@@ -21,21 +22,7 @@ class ProductsSec extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ProductResponse(),
-              SizedBox(
-                width: 80,
-              ),
-            ],
-          ),
-        )
-        )
+        ProductResponse(),
       ],
     );
   }

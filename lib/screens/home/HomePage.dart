@@ -21,6 +21,7 @@ class HomePage extends StatelessWidget {
             margin: EdgeInsets.only(top: 20.0, left: 5.0, right: 5.0),
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
