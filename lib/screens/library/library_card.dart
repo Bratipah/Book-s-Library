@@ -13,11 +13,8 @@ class LibraryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _mediaQuery = MediaQuery
-        .of(context)
-        .size;
-    return
-      ListView.builder(
+    final _mediaQuery = MediaQuery.of(context).size;
+    return ListView.builder(
       shrinkWrap: true,
       itemCount: books.items.length,
       itemBuilder: (context, index) {
@@ -58,16 +55,13 @@ class LibraryCard extends StatelessWidget {
                   ),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children:<Widget> [
+                    children: <Widget>[
                       Padding(padding: EdgeInsets.symmetric(vertical: 2.0)),
                       Text(volume.volumeInfo.publisher ?? ''),
                       Padding(padding: EdgeInsets.symmetric(vertical: 2.0)),
-                      Text("Pages:"+ volume.volumeInfo.pageCount.toString()),
-
+                      Text("Pages:" + volume.volumeInfo.pageCount.toString()),
                     ],
                   ),
-
-
                   trailing: Icon(Icons.star_half_sharp),
                 ),
               ],

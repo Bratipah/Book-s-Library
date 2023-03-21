@@ -12,23 +12,14 @@ class ProductsSec extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _mediaQuery = MediaQuery.of(context).size;
     books = Books();
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Column(
-        children: [
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: books.items.length,
-            itemBuilder: (context, index) {
-              final volume = books.items[index];
-              return ProductResponse();
-            },
-          ),
-        ],
-      ),
-      // ProductsCard(books: ,),
+    return  Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ProductResponse(),
+              ],
+
     );
   }
 }

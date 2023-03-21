@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:test_ui/screens/library/library_page.dart';
 import 'package:test_ui/screens/searches/SearchPage.dart';
 import 'package:test_ui/screens/profile/ProfilePage.dart';
+import 'package:test_ui/screens/home/HomePage.dart';
 
 class BottomNavigation extends StatefulWidget {
   // const BottomNavigation({
@@ -31,15 +32,15 @@ class _BottomNavigationState extends State<BottomNavigation> {
     // ),
     Builder(
     builder: (context) => IconButton(
-    icon: Icon(Icons.library_books_sharp),
+    icon: Icon(Icons.home_sharp),
     onPressed: () {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => LibraryPage()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
     },
     )),
     IconButton(
-    icon: Icon(Icons.search_sharp),
+    icon: Icon(Icons.library_books_sharp),
     onPressed: () {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchPage()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => LibraryPage()));
     },
     ),
     IconButton(

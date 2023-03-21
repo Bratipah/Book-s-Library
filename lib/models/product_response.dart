@@ -13,19 +13,29 @@ class ProductResponse extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               final books = snapshot.data!;
-              return Expanded(
-                  child:SizedBox(
-                    height: 300.0,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: books.items.length,
-                      itemBuilder: (context, index) {
-                        final volume = books.items[index];
-                        return ProductsCard(books: books);
-                      },
-                ),
-              ),
-              );
+              // return Flexible(
+              //       child:
+              debugPrint('the volumes are $books');
+              return ProductsCard(books: books);
+              // return SizedBox(
+              //   width: MediaQuery.of(context).size.width,
+              //   height: 100,
+              //   child:ListView.builder(
+              //     scrollDirection: Axis.horizontal,
+              //     shrinkWrap: true,
+              //     itemCount: books.items.length,
+              //     itemBuilder: (context, index) {
+              //       final volume = books.items[index];
+              //
+              //      // return Text(volume.kind ?? 'it is nullable');
+              //
+              //
+              //     },
+              //   ),
+              // );
+
+
+            //  );
             } else if (snapshot.hasError) {
               return Center(child: Text(snapshot.error.toString()));
             }
