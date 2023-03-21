@@ -8,31 +8,27 @@ class ProductResponse extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Books>(
-          future: fetchBooks(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              final books = snapshot.data!;
-              return Expanded(
-                  child:SizedBox(
-                    height: 300.0,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: books.items.length,
-                      itemBuilder: (context, index) {
-                        final volume = books.items[index];
-                        return ProductsCard(books: books);
-                      },
-                ),
-              ),
-              );
-            } else if (snapshot.hasError) {
-              return Center(child: Text(snapshot.error.toString()));
-            }
-            return Center(child: CircularProgressIndicator());
-          },
-        );
-
+    return Flexible(
+      child: FutureBuilder<Books>(
+        future: fetchBooks(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            final books = snapshot.data!;
+            return ListView.builder(
+              shrinkWrap: true,
+              itemCount: books.items.length,
+              itemBuilder: (context, index) {
+                final volume = books.items[index];
+                return ProductsCard(books: books);
+              },
+            );
+          } else if (snapshot.hasError) {
+            return Center(child: Text(snapshot.error.toString()));
+          }
+          return Center(child: CircularProgressIndicator());
+        },
+      ),
+    );
   }
 }
 

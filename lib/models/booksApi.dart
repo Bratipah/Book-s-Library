@@ -11,7 +11,7 @@ Future<Books> fetchBooks() async {
   final response = await http.get(Uri.parse(baseurl));
 
   final jsonBody = json.decode(response.body);
-  return serializers.deserializeWith(Books.serializer, jsonBody)!!;
+  return serializers.deserializeWith(Books.serializer, jsonBody)!;
 }
 
 
