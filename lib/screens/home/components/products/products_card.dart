@@ -24,16 +24,59 @@ class ProductsCard extends StatelessWidget {
           itemCount: books.items.length,
           itemBuilder: (context, index) {
             final volume = books.items[index];
-            return AspectRatio(
-              aspectRatio: 1.01,
-              child: Container(
-                padding: EdgeInsets.all(10),
-                child: Hero(
+            return Row(
+              children: [
+                Padding(padding: EdgeInsets.symmetric(vertical: 5.0,horizontal: 5.0)),
+                Hero(
                   tag: volume.id,
                   child: Image.network(volume.volumeInfo.imageLinks.thumbnail,
                       fit: BoxFit.cover),
                 ),
-              ),
+                Column(
+                  children: [
+                    Text(
+                      volume.volumeInfo.title,
+                      style: TextStyle(color: Colors.black),
+                      maxLines: 2,
+                    ),
+                    Padding(padding: EdgeInsets.all(5)),
+                    Row(
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            "${volume.volumeInfo.pageCount}\ pages",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800,
+                              color: Color(0xFFFF7643),
+                            ),
+                          ),
+                          InkWell(
+                            borderRadius: BorderRadius.circular(30),
+                            onTap: () {},
+                            child: Container(
+                              padding: EdgeInsets.all(2),
+                              height: 30,
+                              width: 30,
+                              decoration: BoxDecoration(
+                                color: volume.volumeInfo.readingModes.text
+                                    ? Color(0xFFFF7643).withOpacity(0.15)
+                                    : Color(0xFF979797).withOpacity(0.3),
+                                shape: BoxShape.circle,
+                              ),
+                              child: Icon(
+                                Icons.check_circle_sharp,
+                                color: volume.volumeInfo.readingModes.text
+                                    ? Color(0xFFFF4848)
+                                    : Color(0xFFDBDEE4),
+                              ),
+                            ),
+                          ),
+                        ]),
+                  ],
+                )
+              ],
             );
           },
         ));
