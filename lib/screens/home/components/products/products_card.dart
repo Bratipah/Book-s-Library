@@ -33,12 +33,12 @@ class ProductsCard extends StatelessWidget {
               ),
             );
           },
-          child: Expanded(
-            child: Column(
+          child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
                 ListView.builder(
+                  shrinkWrap: true,
                   itemCount: books.items.length,
                   itemBuilder: (context, index) {
                     final volume = books.items[index];
@@ -47,7 +47,7 @@ class ProductsCard extends StatelessWidget {
                       child: Container(
                         padding: EdgeInsets.all(10),
                         child: Hero(
-                          tag: volume.kind,
+                          tag: volume.id,
                           child: Image.network(
                               volume.volumeInfo.imageLinks.thumbnail, fit: BoxFit.cover),
                         ),
@@ -96,7 +96,6 @@ class ProductsCard extends StatelessWidget {
           ),
 
         ),
-      ),
     );
   }
 }

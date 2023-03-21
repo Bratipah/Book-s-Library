@@ -24,14 +24,19 @@ class _$BooksSerializer implements StructuredSerializer<Books> {
   Iterable<Object?> serialize(Serializers serializers, Books object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'kind',
-      serializers.serialize(object.kind, specifiedType: const FullType(String)),
       'items',
       serializers.serialize(object.items,
           specifiedType:
               const FullType(BuiltList, const [const FullType(Volume)])),
     ];
     Object? value;
+    value = object.kind;
+    if (value != null) {
+      result
+        ..add('kind')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.totalItems;
     if (value != null) {
       result
@@ -54,7 +59,7 @@ class _$BooksSerializer implements StructuredSerializer<Books> {
       switch (key) {
         case 'kind':
           result.kind = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'items':
           result.items.replace(serializers.deserialize(value,
@@ -83,8 +88,6 @@ class _$VolumeSerializer implements StructuredSerializer<Volume> {
   Iterable<Object?> serialize(Serializers serializers, Volume object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'kind',
-      serializers.serialize(object.kind, specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
       'etag',
@@ -94,6 +97,13 @@ class _$VolumeSerializer implements StructuredSerializer<Volume> {
           specifiedType: const FullType(VolumeInfo)),
     ];
     Object? value;
+    value = object.kind;
+    if (value != null) {
+      result
+        ..add('kind')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.selfLink;
     if (value != null) {
       result
@@ -117,7 +127,7 @@ class _$VolumeSerializer implements StructuredSerializer<Volume> {
       switch (key) {
         case 'kind':
           result.kind = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'id':
           result.id = serializers.deserialize(value,
@@ -189,6 +199,12 @@ class _$VolumeInfoSerializer implements StructuredSerializer<VolumeInfo> {
         ..add('averageRating')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.pageCount;
+    if (value != null) {
+      result
+        ..add('pageCount')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
     return result;
   }
 
@@ -236,6 +252,10 @@ class _$VolumeInfoSerializer implements StructuredSerializer<VolumeInfo> {
         case 'readingModes':
           result.readingModes.replace(serializers.deserialize(value,
               specifiedType: const FullType(ReadingModes))! as ReadingModes);
+          break;
+        case 'pageCount':
+          result.pageCount = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
           break;
       }
     }
@@ -391,7 +411,7 @@ class _$ReadingModesSerializer implements StructuredSerializer<ReadingModes> {
 
 class _$Books extends Books {
   @override
-  final String kind;
+  final String? kind;
   @override
   final BuiltList<Volume> items;
   @override
@@ -400,9 +420,7 @@ class _$Books extends Books {
   factory _$Books([void Function(BooksBuilder)? updates]) =>
       (new BooksBuilder()..update(updates))._build();
 
-  _$Books._({required this.kind, required this.items, this.totalItems})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(kind, r'Books', 'kind');
+  _$Books._({this.kind, required this.items, this.totalItems}) : super._() {
     BuiltValueNullFieldError.checkNotNull(items, r'Books', 'items');
   }
 
@@ -489,10 +507,7 @@ class BooksBuilder implements Builder<Books, BooksBuilder> {
     try {
       _$result = _$v ??
           new _$Books._(
-              kind:
-                  BuiltValueNullFieldError.checkNotNull(kind, r'Books', 'kind'),
-              items: items.build(),
-              totalItems: totalItems);
+              kind: kind, items: items.build(), totalItems: totalItems);
     } catch (_) {
       late String _$failedField;
       try {
@@ -511,7 +526,7 @@ class BooksBuilder implements Builder<Books, BooksBuilder> {
 
 class _$Volume extends Volume {
   @override
-  final String kind;
+  final String? kind;
   @override
   final String id;
   @override
@@ -525,13 +540,12 @@ class _$Volume extends Volume {
       (new VolumeBuilder()..update(updates))._build();
 
   _$Volume._(
-      {required this.kind,
+      {this.kind,
       required this.id,
       required this.etag,
       this.selfLink,
       required this.volumeInfo})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(kind, r'Volume', 'kind');
     BuiltValueNullFieldError.checkNotNull(id, r'Volume', 'id');
     BuiltValueNullFieldError.checkNotNull(etag, r'Volume', 'etag');
     BuiltValueNullFieldError.checkNotNull(volumeInfo, r'Volume', 'volumeInfo');
@@ -638,8 +652,7 @@ class VolumeBuilder implements Builder<Volume, VolumeBuilder> {
     try {
       _$result = _$v ??
           new _$Volume._(
-              kind: BuiltValueNullFieldError.checkNotNull(
-                  kind, r'Volume', 'kind'),
+              kind: kind,
               id: BuiltValueNullFieldError.checkNotNull(id, r'Volume', 'id'),
               etag: BuiltValueNullFieldError.checkNotNull(
                   etag, r'Volume', 'etag'),
@@ -678,6 +691,8 @@ class _$VolumeInfo extends VolumeInfo {
   final ImageLinks imageLinks;
   @override
   final ReadingModes readingModes;
+  @override
+  final int? pageCount;
 
   factory _$VolumeInfo([void Function(VolumeInfoBuilder)? updates]) =>
       (new VolumeInfoBuilder()..update(updates))._build();
@@ -690,7 +705,8 @@ class _$VolumeInfo extends VolumeInfo {
       this.averageRating,
       required this.pdf,
       required this.imageLinks,
-      required this.readingModes})
+      required this.readingModes,
+      this.pageCount})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(title, r'VolumeInfo', 'title');
     BuiltValueNullFieldError.checkNotNull(authors, r'VolumeInfo', 'authors');
@@ -719,7 +735,8 @@ class _$VolumeInfo extends VolumeInfo {
         averageRating == other.averageRating &&
         pdf == other.pdf &&
         imageLinks == other.imageLinks &&
-        readingModes == other.readingModes;
+        readingModes == other.readingModes &&
+        pageCount == other.pageCount;
   }
 
   @override
@@ -733,6 +750,7 @@ class _$VolumeInfo extends VolumeInfo {
     _$hash = $jc(_$hash, pdf.hashCode);
     _$hash = $jc(_$hash, imageLinks.hashCode);
     _$hash = $jc(_$hash, readingModes.hashCode);
+    _$hash = $jc(_$hash, pageCount.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -747,7 +765,8 @@ class _$VolumeInfo extends VolumeInfo {
           ..add('averageRating', averageRating)
           ..add('pdf', pdf)
           ..add('imageLinks', imageLinks)
-          ..add('readingModes', readingModes))
+          ..add('readingModes', readingModes)
+          ..add('pageCount', pageCount))
         .toString();
   }
 }
@@ -793,6 +812,10 @@ class VolumeInfoBuilder implements Builder<VolumeInfo, VolumeInfoBuilder> {
   set readingModes(ReadingModesBuilder? readingModes) =>
       _$this._readingModes = readingModes;
 
+  int? _pageCount;
+  int? get pageCount => _$this._pageCount;
+  set pageCount(int? pageCount) => _$this._pageCount = pageCount;
+
   VolumeInfoBuilder();
 
   VolumeInfoBuilder get _$this {
@@ -806,6 +829,7 @@ class VolumeInfoBuilder implements Builder<VolumeInfo, VolumeInfoBuilder> {
       _pdf = $v.pdf.toBuilder();
       _imageLinks = $v.imageLinks.toBuilder();
       _readingModes = $v.readingModes.toBuilder();
+      _pageCount = $v.pageCount;
       _$v = null;
     }
     return this;
@@ -838,7 +862,8 @@ class VolumeInfoBuilder implements Builder<VolumeInfo, VolumeInfoBuilder> {
               averageRating: averageRating,
               pdf: pdf.build(),
               imageLinks: imageLinks.build(),
-              readingModes: readingModes.build());
+              readingModes: readingModes.build(),
+              pageCount: pageCount);
     } catch (_) {
       late String _$failedField;
       try {
