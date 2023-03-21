@@ -15,7 +15,7 @@ class CategorySec extends StatelessWidget {
         ),
         SizedBox(width: 20),
         CategoryCard(
-          image: 'assets/images/pexels-pixabay-256450.jpg',
+          image: 'assets/images/pexels-pixabay-415071.jpg',
           category: "Fantasy",
           title: "The Lion, the Witch and the Wardrobe",
         ),

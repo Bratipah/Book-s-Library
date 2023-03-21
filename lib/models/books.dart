@@ -7,7 +7,7 @@ part 'books.g.dart';
 
 abstract class Books implements Built<Books, BooksBuilder> {
   @BuiltValueField(wireName: 'kind')
-  String get kind;
+  String? get kind;
   @BuiltValueField(wireName: 'items')
   BuiltList<Volume> get items;
   @BuiltValueField(wireName: 'total_items')
@@ -22,7 +22,7 @@ abstract class Books implements Built<Books, BooksBuilder> {
 abstract class Volume implements Built<Volume, VolumeBuilder> {
 
   @BuiltValueField(wireName: 'kind')
-  String get kind;
+  String? get kind;
   @BuiltValueField(wireName: 'id')
   String get id;
   @BuiltValueField(wireName: 'etag')
@@ -58,6 +58,8 @@ abstract class VolumeInfo implements Built<VolumeInfo, VolumeInfoBuilder> {
   ImageLinks get imageLinks;
   @BuiltValueField(wireName: 'readingModes')
   ReadingModes get readingModes;
+  @BuiltValueField(wireName: 'pageCount')
+  int? get pageCount;
 
   // BuiltList<IndustryIdentifiers> get industryIdentifiers;
 

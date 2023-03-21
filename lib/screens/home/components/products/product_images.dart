@@ -23,7 +23,7 @@ class ProductImages extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final volume = books.items[index];
                   return Hero(
-                      tag: volume.kind,
+                      tag: volume.id,
                       child:Image.network(volume.volumeInfo.imageLinks.thumbnail),
                   );
                 },
