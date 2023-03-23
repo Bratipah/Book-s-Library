@@ -54,7 +54,7 @@ class HomePage extends StatelessWidget {
                 ],
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 40,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -67,7 +67,7 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
