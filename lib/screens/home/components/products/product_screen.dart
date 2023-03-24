@@ -15,15 +15,21 @@ class ProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final _mediaQuery = MediaQuery.of(context).size.width -20;
     final ProductDetailsArguments agrs = ModalRoute.of(context)!.settings.arguments as ProductDetailsArguments;
-    return Scaffold(
-      backgroundColor: Colors.blue[100],
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(AppBar().preferredSize.height),
-        child: DetailsAppbar(books: books),
-      ),
-      body: DetailsBody(books: agrs.books),
+    return   Scaffold(
+        backgroundColor: Colors.blue[100],
+        appBar:
+        // AppBar(title: Text('Detail'),),
+
+        PreferredSize(
+          preferredSize: Size.fromHeight(100.0),
+          child: DetailsAppbar(books: books),
+        ),
+        body:  DetailsBody(books: agrs.books),
+
     );
+
   }
 }
 

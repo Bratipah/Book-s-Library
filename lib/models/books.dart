@@ -85,7 +85,7 @@ abstract class ImageLinks implements Built<ImageLinks, ImageLinksBuilder> {
   @BuiltValueField(wireName: 'smallThumbnail')
   String? get smallThumbnail;
   @BuiltValueField(wireName: 'thumbnail')
-  String get thumbnail;
+  String? get thumbnail;
 
   ImageLinks._();
   factory ImageLinks([void Function(ImageLinksBuilder) updates]) = _$ImageLinks;

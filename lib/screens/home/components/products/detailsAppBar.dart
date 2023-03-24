@@ -3,7 +3,6 @@ import 'package:test_ui/models/books.dart';
 import 'package:test_ui/models/product_response.dart';
 
 class DetailsAppbar extends StatelessWidget {
-
   const DetailsAppbar({
     Key? key,
     required this.books,
@@ -15,58 +14,54 @@ class DetailsAppbar extends StatelessWidget {
     final _mediaQuery = MediaQuery.of(context).size;
     return SafeArea(
       child: Padding(
-        padding:
-            EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Row(
           children: [
             SizedBox(
-              height: 50,
-              width: 40,
+              height: 40,
+              width: 50,
               child: TextButton(
                 style: TextButton.styleFrom(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(60),
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                  primary: Colors.blue[50],
                   backgroundColor: Colors.white,
-                  padding: EdgeInsets.zero,
                 ),
                 onPressed: () => Navigator.pop(context),
                 child: Icon(
                   Icons.arrow_back_ios_sharp,
-                  size: 15,
-                  color: Colors.blue[50],
+                  size: 20,
+                  color: Colors.blueAccent[400],
                 ),
               ),
             ),
             Spacer(),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(14),
-              ),
-              child: Row(
-                children: [
-              ListView.builder(
-              itemCount: books.items.length,
+            Flexible(
+              fit: FlexFit.loose,
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: books.items.length,
                 itemBuilder: (context, index) {
                   final volume = books.items[index];
-                  return Text(
-                    volume.volumeInfo.averageRating.toString(),
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        volume.volumeInfo.averageRating.toString(),
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Icon(
+                        Icons.star_half_sharp,
+                        size: 15,
+                      )
+                    ],
                   );
                 },
               ),
-                  const SizedBox(width: 5),
-                  Icon(Icons.star_half_sharp,)
-                ],
-              ),
-            )
+            ),
           ],
         ),
       ),

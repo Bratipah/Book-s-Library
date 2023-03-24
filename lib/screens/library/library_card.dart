@@ -40,29 +40,44 @@ class LibraryCard extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                ListTile(
-                  leading: Hero(
-                    tag: 'book',
-                    child: Image.network(
-                      volume.volumeInfo.imageLinks.smallThumbnail ?? '',
-                      fit: BoxFit.cover,
+                GestureDetector(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductScreen(
+                        books: books,
+                      ),
+                      // Pass the arguments as part of the RouteSettings. The
+                      // DetailScreen reads the arguments from these settings.
+                      settings: RouteSettings(
+                        arguments: ProductDetailsArguments(books: books),
+                      ),
                     ),
                   ),
-                  title: Text(
-                    volume.volumeInfo.title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
+                  child: ListTile(
+                    leading: Hero(
+                      tag: 'book',
+                      child: Image.network(
+                        volume.volumeInfo.imageLinks.smallThumbnail ?? '',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    title: Text(
+                      volume.volumeInfo.title,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(padding: EdgeInsets.symmetric(vertical: 2.0)),
+                        Text(volume.volumeInfo.publisher ?? ''),
+                        Padding(padding: EdgeInsets.symmetric(vertical: 2.0)),
+                        Text("Pages:" + volume.volumeInfo.pageCount.toString()),
+                      ],
+                    ),
+                    trailing: Icon(Icons.star_half_sharp),
                   ),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(padding: EdgeInsets.symmetric(vertical: 2.0)),
-                      Text(volume.volumeInfo.publisher ?? ''),
-                      Padding(padding: EdgeInsets.symmetric(vertical: 2.0)),
-                      Text("Pages:" + volume.volumeInfo.pageCount.toString()),
-                    ],
-                  ),
-                  trailing: Icon(Icons.star_half_sharp),
                 ),
               ],
             ),
