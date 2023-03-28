@@ -14,8 +14,6 @@ class ProductResponse extends StatelessWidget {
             if (snapshot.hasData) {
               final books = snapshot.data!;
               return Expanded(
-                  child:SizedBox(
-                    height: 300.0,
                     child: ListView.builder(
                       shrinkWrap: true,
                       itemCount: books.items.length,
@@ -23,7 +21,6 @@ class ProductResponse extends StatelessWidget {
                         final volume = books.items[index];
                         return ProductsCard(books: books);
                       },
-                ),
               ),
               );
             } else if (snapshot.hasError) {

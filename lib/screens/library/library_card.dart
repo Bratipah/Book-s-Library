@@ -13,7 +13,6 @@ class LibraryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _mediaQuery = MediaQuery.of(context).size;
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -22,7 +21,7 @@ class LibraryCard extends StatelessWidget {
             itemBuilder: (context, index) {
               final volume = books.items[index];
               return Hero(
-                tag: volume.kind,
+                tag: volume.id,
                 child: Image.network(volume.volumeInfo.imageLinks.smallThumbnail?? ''),
 
               );
@@ -37,17 +36,17 @@ class LibraryCard extends StatelessWidget {
                   selectedColor: Colors.black,
                   selectedTileColor: Colors.white,
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProductScreen(books: books),
-                        // Pass the arguments as part of the RouteSettings. The
-                        // productScreen reads the arguments from these settings.
-                        settings: RouteSettings(
-                          arguments:ProductDetailsArguments(books: books),
-                        ),
-                      ),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => ProductScreen(books: books),
+                    //     // Pass the arguments as part of the RouteSettings. The
+                    //     // productScreen reads the arguments from these settings.
+                    //     settings: RouteSettings(
+                    //       arguments:ProductDetailsArguments(books: books),
+                    //     ),
+                    //   ),
+                    // );
                   },
                 ),
               );

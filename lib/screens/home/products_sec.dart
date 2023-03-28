@@ -21,20 +21,24 @@ class ProductsSec extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ProductResponse(),
-              SizedBox(
-                width: 80,
-              ),
-            ],
+        Container(
+          width: MediaQuery.of(context).size.width,
+          child:  SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: SizedBox(
+                // height: 200,
+                width: 300,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                      ProductResponse(),
+                    SizedBox(
+                      width: 80,
+                    ),
+                  ],
+                ),
+              )
           ),
-        )
         )
       ],
     );
