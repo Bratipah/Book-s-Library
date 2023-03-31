@@ -9,7 +9,7 @@ abstract class Books implements Built<Books, BooksBuilder> {
   @BuiltValueField(wireName: 'kind')
   String? get kind;
   @BuiltValueField(wireName: 'items')
-  BuiltList<Volume> get items;
+  BuiltList<Volume>? get items;
   @BuiltValueField(wireName: 'total_items')
   int? get totalItems;
 
@@ -24,9 +24,9 @@ abstract class Volume implements Built<Volume, VolumeBuilder> {
   @BuiltValueField(wireName: 'kind')
   String? get kind;
   @BuiltValueField(wireName: 'id')
-  String get id;
+  String? get id;
   @BuiltValueField(wireName: 'etag')
-  String get etag;
+  String? get etag;
   @BuiltValueField(wireName: 'self_link')
   String? get selfLink;
   @BuiltValueField(wireName: 'volumeInfo')
@@ -43,7 +43,7 @@ abstract class VolumeInfo implements Built<VolumeInfo, VolumeInfoBuilder> {
   @BuiltValueField(wireName: 'subtitle')
   String? get subtitle;
   @BuiltValueField(wireName: 'title')
-  String get title;
+  String? get title;
   // @BuiltValueField(wireName: 'pageCount')
   // int get pageCount;
   @BuiltValueField(wireName: 'authors')
@@ -55,9 +55,9 @@ abstract class VolumeInfo implements Built<VolumeInfo, VolumeInfoBuilder> {
   @BuiltValueField(wireName: 'pdf')
   Pdf get pdf;
   @BuiltValueField(wireName: 'imageLinks')
-  ImageLinks get imageLinks;
+  ImageLinks? get imageLinks;
   @BuiltValueField(wireName: 'readingModes')
-  ReadingModes get readingModes;
+  ReadingModes? get readingModes;
   @BuiltValueField(wireName: 'pageCount')
   int? get pageCount;
 
@@ -95,7 +95,7 @@ abstract class ImageLinks implements Built<ImageLinks, ImageLinksBuilder> {
 
 abstract class ReadingModes implements Built<ReadingModes, ReadingModesBuilder> {
   @BuiltValueField(wireName: 'text')
-  bool get text;
+  bool? get text;
 
   ReadingModes._();
   factory ReadingModes([void Function(ReadingModesBuilder) updates]) = _$ReadingModes;

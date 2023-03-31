@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:test_ui/models/books.dart';
 import 'package:test_ui/models/product_response.dart';
+import 'package:test_ui/screens/home/util.dart';
 
 class DetailsAppbar extends StatelessWidget {
-  const DetailsAppbar({
+   const DetailsAppbar({
     Key? key,
-    required this.books,
   }) : super(key: key);
-  final Books books;
+
 
   @override
   Widget build(BuildContext context) {
-    final _mediaQuery = MediaQuery.of(context).size;
+    Volume volume = Volume();
+    VolumeInfo volumeInfo = VolumeInfo();
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         child: Row(
           children: [
             SizedBox(
               height: 40,
-              width: 50,
+              width: 35,
               child: TextButton(
                 style: TextButton.styleFrom(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(20),
                   ),
                   backgroundColor: Colors.white,
                 ),
@@ -38,29 +39,22 @@ class DetailsAppbar extends StatelessWidget {
             Spacer(),
             Flexible(
               fit: FlexFit.loose,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: books.items.length,
-                itemBuilder: (context, index) {
-                  final volume = books.items[index];
-                  return Row(
+              child:  Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        volume.volumeInfo.averageRating.toString(),
+                        volume.volumeInfo.averageRating.toStringOrNull() ?? "",
                         style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      Icon(
+                      const Icon(
                         Icons.star_half_sharp,
                         size: 15,
                       )
                     ],
-                  );
-                },
-              ),
+                  ),
             ),
           ],
         ),

@@ -14,4 +14,34 @@ extension CustomStringFunct on String {
     res += "...";
     return res;
   }
+
 }
+
+
+extension ObjectExtention on Object? {
+  String? toStringOrNull(){
+    if(this == null){
+      return null;
+    } else {
+      return this.toString();
+    }
+  }
+}
+
+
+// <T> String? toString(T? value){
+//   if(value == null){
+//     return "";
+//   } else {
+//     return value.toString();
+//   }
+// }
+
+
+
+
+
+
+
+
+

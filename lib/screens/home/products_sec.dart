@@ -16,10 +16,9 @@ class ProductsSec extends StatelessWidget {
     return  Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const [
                 ProductResponse(),
               ],
-
     );
   }
 }

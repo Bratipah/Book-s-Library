@@ -88,10 +88,6 @@ class _$VolumeSerializer implements StructuredSerializer<Volume> {
   Iterable<Object?> serialize(Serializers serializers, Volume object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'id',
-      serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'etag',
-      serializers.serialize(object.etag, specifiedType: const FullType(String)),
       'volumeInfo',
       serializers.serialize(object.volumeInfo,
           specifiedType: const FullType(VolumeInfo)),
@@ -101,6 +97,20 @@ class _$VolumeSerializer implements StructuredSerializer<Volume> {
     if (value != null) {
       result
         ..add('kind')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.id;
+    if (value != null) {
+      result
+        ..add('id')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.etag;
+    if (value != null) {
+      result
+        ..add('etag')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -131,11 +141,11 @@ class _$VolumeSerializer implements StructuredSerializer<Volume> {
           break;
         case 'id':
           result.id = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'etag':
           result.etag = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'self_link':
           result.selfLink = serializers.deserialize(value,
@@ -162,27 +172,25 @@ class _$VolumeInfoSerializer implements StructuredSerializer<VolumeInfo> {
   Iterable<Object?> serialize(Serializers serializers, VolumeInfo object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'title',
-      serializers.serialize(object.title,
-          specifiedType: const FullType(String)),
       'authors',
       serializers.serialize(object.authors,
           specifiedType:
               const FullType(BuiltList, const [const FullType(String)])),
       'pdf',
       serializers.serialize(object.pdf, specifiedType: const FullType(Pdf)),
-      'imageLinks',
-      serializers.serialize(object.imageLinks,
-          specifiedType: const FullType(ImageLinks)),
-      'readingModes',
-      serializers.serialize(object.readingModes,
-          specifiedType: const FullType(ReadingModes)),
     ];
     Object? value;
     value = object.subtitle;
     if (value != null) {
       result
         ..add('subtitle')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.title;
+    if (value != null) {
+      result
+        ..add('title')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -198,6 +206,20 @@ class _$VolumeInfoSerializer implements StructuredSerializer<VolumeInfo> {
       result
         ..add('averageRating')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.imageLinks;
+    if (value != null) {
+      result
+        ..add('imageLinks')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(ImageLinks)));
+    }
+    value = object.readingModes;
+    if (value != null) {
+      result
+        ..add('readingModes')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(ReadingModes)));
     }
     value = object.pageCount;
     if (value != null) {
@@ -225,7 +247,7 @@ class _$VolumeInfoSerializer implements StructuredSerializer<VolumeInfo> {
           break;
         case 'title':
           result.title = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'authors':
           result.authors.replace(serializers.deserialize(value,
@@ -327,16 +349,19 @@ class _$ImageLinksSerializer implements StructuredSerializer<ImageLinks> {
   @override
   Iterable<Object?> serialize(Serializers serializers, ImageLinks object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'thumbnail',
-      serializers.serialize(object.thumbnail,
-          specifiedType: const FullType(String)),
-    ];
+    final result = <Object?>[];
     Object? value;
     value = object.smallThumbnail;
     if (value != null) {
       result
         ..add('smallThumbnail')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.thumbnail;
+    if (value != null) {
+      result
+        ..add('thumbnail')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -360,7 +385,7 @@ class _$ImageLinksSerializer implements StructuredSerializer<ImageLinks> {
           break;
         case 'thumbnail':
           result.thumbnail = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -378,11 +403,15 @@ class _$ReadingModesSerializer implements StructuredSerializer<ReadingModes> {
   @override
   Iterable<Object?> serialize(Serializers serializers, ReadingModes object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'text',
-      serializers.serialize(object.text, specifiedType: const FullType(bool)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.text;
+    if (value != null) {
+      result
+        ..add('text')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     return result;
   }
 
@@ -400,7 +429,7 @@ class _$ReadingModesSerializer implements StructuredSerializer<ReadingModes> {
       switch (key) {
         case 'text':
           result.text = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
       }
     }
@@ -528,9 +557,9 @@ class _$Volume extends Volume {
   @override
   final String? kind;
   @override
-  final String id;
+  final String? id;
   @override
-  final String etag;
+  final String? etag;
   @override
   final String? selfLink;
   @override
@@ -540,14 +569,8 @@ class _$Volume extends Volume {
       (new VolumeBuilder()..update(updates))._build();
 
   _$Volume._(
-      {this.kind,
-      required this.id,
-      required this.etag,
-      this.selfLink,
-      required this.volumeInfo})
+      {this.kind, this.id, this.etag, this.selfLink, required this.volumeInfo})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(id, r'Volume', 'id');
-    BuiltValueNullFieldError.checkNotNull(etag, r'Volume', 'etag');
     BuiltValueNullFieldError.checkNotNull(volumeInfo, r'Volume', 'volumeInfo');
   }
 
@@ -653,9 +676,8 @@ class VolumeBuilder implements Builder<Volume, VolumeBuilder> {
       _$result = _$v ??
           new _$Volume._(
               kind: kind,
-              id: BuiltValueNullFieldError.checkNotNull(id, r'Volume', 'id'),
-              etag: BuiltValueNullFieldError.checkNotNull(
-                  etag, r'Volume', 'etag'),
+              id: id,
+              etag: etag,
               selfLink: selfLink,
               volumeInfo: volumeInfo.build());
     } catch (_) {
@@ -678,7 +700,7 @@ class _$VolumeInfo extends VolumeInfo {
   @override
   final String? subtitle;
   @override
-  final String title;
+  final String? title;
   @override
   final BuiltList<String> authors;
   @override
@@ -688,9 +710,9 @@ class _$VolumeInfo extends VolumeInfo {
   @override
   final Pdf pdf;
   @override
-  final ImageLinks imageLinks;
+  final ImageLinks? imageLinks;
   @override
-  final ReadingModes readingModes;
+  final ReadingModes? readingModes;
   @override
   final int? pageCount;
 
@@ -699,22 +721,17 @@ class _$VolumeInfo extends VolumeInfo {
 
   _$VolumeInfo._(
       {this.subtitle,
-      required this.title,
+      this.title,
       required this.authors,
       this.publisher,
       this.averageRating,
       required this.pdf,
-      required this.imageLinks,
-      required this.readingModes,
+      this.imageLinks,
+      this.readingModes,
       this.pageCount})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(title, r'VolumeInfo', 'title');
     BuiltValueNullFieldError.checkNotNull(authors, r'VolumeInfo', 'authors');
     BuiltValueNullFieldError.checkNotNull(pdf, r'VolumeInfo', 'pdf');
-    BuiltValueNullFieldError.checkNotNull(
-        imageLinks, r'VolumeInfo', 'imageLinks');
-    BuiltValueNullFieldError.checkNotNull(
-        readingModes, r'VolumeInfo', 'readingModes');
   }
 
   @override
@@ -827,8 +844,8 @@ class VolumeInfoBuilder implements Builder<VolumeInfo, VolumeInfoBuilder> {
       _publisher = $v.publisher;
       _averageRating = $v.averageRating;
       _pdf = $v.pdf.toBuilder();
-      _imageLinks = $v.imageLinks.toBuilder();
-      _readingModes = $v.readingModes.toBuilder();
+      _imageLinks = $v.imageLinks?.toBuilder();
+      _readingModes = $v.readingModes?.toBuilder();
       _pageCount = $v.pageCount;
       _$v = null;
     }
@@ -855,14 +872,13 @@ class VolumeInfoBuilder implements Builder<VolumeInfo, VolumeInfoBuilder> {
       _$result = _$v ??
           new _$VolumeInfo._(
               subtitle: subtitle,
-              title: BuiltValueNullFieldError.checkNotNull(
-                  title, r'VolumeInfo', 'title'),
+              title: title,
               authors: authors.build(),
               publisher: publisher,
               averageRating: averageRating,
               pdf: pdf.build(),
-              imageLinks: imageLinks.build(),
-              readingModes: readingModes.build(),
+              imageLinks: _imageLinks?.build(),
+              readingModes: _readingModes?.build(),
               pageCount: pageCount);
     } catch (_) {
       late String _$failedField;
@@ -873,9 +889,9 @@ class VolumeInfoBuilder implements Builder<VolumeInfo, VolumeInfoBuilder> {
         _$failedField = 'pdf';
         pdf.build();
         _$failedField = 'imageLinks';
-        imageLinks.build();
+        _imageLinks?.build();
         _$failedField = 'readingModes';
-        readingModes.build();
+        _readingModes?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'VolumeInfo', _$failedField, e.toString());
@@ -980,15 +996,12 @@ class _$ImageLinks extends ImageLinks {
   @override
   final String? smallThumbnail;
   @override
-  final String thumbnail;
+  final String? thumbnail;
 
   factory _$ImageLinks([void Function(ImageLinksBuilder)? updates]) =>
       (new ImageLinksBuilder()..update(updates))._build();
 
-  _$ImageLinks._({this.smallThumbnail, required this.thumbnail}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        thumbnail, r'ImageLinks', 'thumbnail');
-  }
+  _$ImageLinks._({this.smallThumbnail, this.thumbnail}) : super._();
 
   @override
   ImageLinks rebuild(void Function(ImageLinksBuilder) updates) =>
@@ -1064,9 +1077,7 @@ class ImageLinksBuilder implements Builder<ImageLinks, ImageLinksBuilder> {
   _$ImageLinks _build() {
     final _$result = _$v ??
         new _$ImageLinks._(
-            smallThumbnail: smallThumbnail,
-            thumbnail: BuiltValueNullFieldError.checkNotNull(
-                thumbnail, r'ImageLinks', 'thumbnail'));
+            smallThumbnail: smallThumbnail, thumbnail: thumbnail);
     replace(_$result);
     return _$result;
   }
@@ -1074,14 +1085,12 @@ class ImageLinksBuilder implements Builder<ImageLinks, ImageLinksBuilder> {
 
 class _$ReadingModes extends ReadingModes {
   @override
-  final bool text;
+  final bool? text;
 
   factory _$ReadingModes([void Function(ReadingModesBuilder)? updates]) =>
       (new ReadingModesBuilder()..update(updates))._build();
 
-  _$ReadingModes._({required this.text}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(text, r'ReadingModes', 'text');
-  }
+  _$ReadingModes._({this.text}) : super._();
 
   @override
   ReadingModes rebuild(void Function(ReadingModesBuilder) updates) =>
@@ -1145,10 +1154,7 @@ class ReadingModesBuilder
   ReadingModes build() => _build();
 
   _$ReadingModes _build() {
-    final _$result = _$v ??
-        new _$ReadingModes._(
-            text: BuiltValueNullFieldError.checkNotNull(
-                text, r'ReadingModes', 'text'));
+    final _$result = _$v ?? new _$ReadingModes._(text: text);
     replace(_$result);
     return _$result;
   }

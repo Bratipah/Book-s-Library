@@ -33,7 +33,6 @@ class ProductsCard extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => ProductScreen(
-                      books: books,
                     ),
                     // Pass the arguments as part of the RouteSettings. The
                     // DetailScreen reads the arguments from these settings.
@@ -45,9 +44,9 @@ class ProductsCard extends StatelessWidget {
                 child: Column(
                   children: [
                     Hero(
-                      tag: volume.id,
+                      tag: volume.id ?? '',
                       child: Image.network(
-                        volume.volumeInfo.imageLinks.thumbnail ?? '',
+                        volume.volumeInfo.imageLinks?.thumbnail ?? '',
                         fit: BoxFit.contain,
                         width: 100,
                         height: 200,
@@ -56,7 +55,7 @@ class ProductsCard extends StatelessWidget {
                     // ),
                     Padding(padding: EdgeInsets.all(2)),
                     Text(
-                      volume.volumeInfo.title.take(15),
+                      volume.volumeInfo.title?.take(15) ?? '',
                       style: TextStyle(color: Colors.black),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -81,14 +80,14 @@ class ProductsCard extends StatelessWidget {
                             height: 30,
                             width: 30,
                             decoration: BoxDecoration(
-                              color: volume.volumeInfo.readingModes.text
+                              color: volume.volumeInfo.readingModes?.text ?? false
                                   ? Color(0xFFFF7643).withOpacity(0.15)
                                   : Color(0xFF979797).withOpacity(0.3),
                               shape: BoxShape.circle,
                             ),
                             child: Icon(
                               Icons.menu_book,
-                              color: volume.volumeInfo.readingModes.text
+                              color: volume.volumeInfo.readingModes?.text ?? false
                                   ? Color(0xFFFF4848)
                                   : Color(0xFFDBDEE4),
                             ),

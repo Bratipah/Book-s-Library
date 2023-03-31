@@ -28,7 +28,7 @@ class LibraryCard extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ProductScreen(books: books),
+                  builder: (context) => ProductScreen(),
                   // Pass the arguments as part of the RouteSettings. The
                   // productScreen reads the arguments from these settings.
                   settings: RouteSettings(
@@ -45,7 +45,6 @@ class LibraryCard extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => ProductScreen(
-                        books: books,
                       ),
                       // Pass the arguments as part of the RouteSettings. The
                       // DetailScreen reads the arguments from these settings.
@@ -58,12 +57,12 @@ class LibraryCard extends StatelessWidget {
                     leading: Hero(
                       tag: 'book',
                       child: Image.network(
-                        volume.volumeInfo.imageLinks.smallThumbnail ?? '',
+                        volume.volumeInfo.imageLinks?.smallThumbnail ?? '',
                         fit: BoxFit.cover,
                       ),
                     ),
                     title: Text(
-                      volume.volumeInfo.title,
+                      volume.volumeInfo.title?? '',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
